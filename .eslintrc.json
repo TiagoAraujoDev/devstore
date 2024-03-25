@@ -1,0 +1,88 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:prettier/recommended"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "react",
+      "prettier",
+      "import-helpers"
+    ],
+    "ignorePatterns": [
+      "*.js",
+      ".contentlayer",
+      ".next",
+      "node_modules"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "printWidth": 80,
+          "tabWidth": 2,
+          "singleQuote": false,
+          "trailingComma": "all",
+          "arrowParens": "always",
+          "semi": true,
+          "OfLine": "auto"
+        }
+      ],
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off",
+      "indent": [
+        "error",
+        2
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "import-helpers/order-imports": [
+        "warn",
+        {
+          "newlinesBetween": "always",
+          "groups": [
+            [
+              "module"
+            ],
+            "/^~/*/",
+            [
+              "parent",
+              "sibling",
+              "index"
+            ]
+          ],
+          "alphabetize": {
+            "order": "asc",
+            "ignoreCase": true
+          }
+        }
+      ]
+    }
+  }
