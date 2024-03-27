@@ -10,9 +10,7 @@ const config: Config = {
     fontFamily: {
       sans: "var(--font-inter)",
     },
-    gridTemplateRows: {
-      app: "min-content max-content",
-    },
+    extend: {},
   },
   plugins: [require("@tailwindcss/typography")],
 };
