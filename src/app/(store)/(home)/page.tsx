@@ -17,14 +17,16 @@ export default async function Home() {
           alt=""
         />
         <div className="absolute bottom-28 right-28 flex h-12 max-w-[280px] items-center gap-2 rounded-full border-2 border-zinc-500 bg-black/60  p-1 pl-5">
-          <span>Moletom NLW</span>
-          <span> R$ 79,99</span>
+          <span className="truncate text-sm">Moletom Never stop learning</span>
+          <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4">
+            R$79,99
+          </span>
         </div>
       </Link>
 
       <Link
         href="/"
-        className="group col-span-3 row-span-3 flex items-center justify-end overflow-hidden rounded-lg bg-zinc-900"
+        className="group relative col-span-3 row-span-3 flex items-center justify-end overflow-hidden rounded-lg bg-zinc-900"
       >
         <Image
           src="/moletom-ai-side.png"
@@ -34,11 +36,17 @@ export default async function Home() {
           quality={100}
           alt=""
         />
+        <div className="absolute bottom-10 right-10 flex h-12 max-w-[280px] items-center gap-2 rounded-full border-2 border-zinc-500 bg-black/60  p-1 pl-5">
+          <span className="truncate text-sm">Moletom AI side</span>
+          <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4">
+            R$79,99
+          </span>
+        </div>
       </Link>
 
       <Link
         href="/"
-        className="group col-span-3 row-span-3 flex items-center justify-end overflow-hidden rounded-lg bg-zinc-900"
+        className="group relative col-span-3 row-span-3 flex items-center justify-end overflow-hidden rounded-lg bg-zinc-900"
       >
         <Image
           src="/moletom-java.png"
@@ -48,6 +56,12 @@ export default async function Home() {
           quality={100}
           alt=""
         />
+        <div className="absolute bottom-10 right-10 flex h-12 max-w-[280px] items-center gap-2 rounded-full border-2 border-zinc-500 bg-black/60  p-1 pl-5">
+          <span className="truncate text-sm">Moletom Java</span>
+          <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4">
+            R$79,99
+          </span>
+        </div>
       </Link>
     </div>
   );
