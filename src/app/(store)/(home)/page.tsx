@@ -6,16 +6,12 @@ import { api } from "~/data/api";
 async function getFeaturedProducts() {
   const response = await api("/products/featured");
   const products = await response.json();
-  console.log(products);
+  return products;
 }
 
 export default async function Home() {
-  const res = await fetch(
-    "https://upgraded-palm-tree-xgqqxw6w5943x7r-3000.app.github.dev/api/products",
-  );
-  const p = await res.json();
-  console.log(p);
-  // await getFeaturedProducts();
+  const products = await getFeaturedProducts();
+  console.log(products);
   return (
     <div className="grid max-h-[860px] grid-cols-9 grid-rows-6 gap-6">
       <Link
@@ -37,7 +33,6 @@ export default async function Home() {
           </span>
         </div>
       </Link>
-
       <Link
         href="/"
         className="group relative col-span-3 row-span-3 flex items-center justify-end overflow-hidden rounded-lg bg-zinc-900"
