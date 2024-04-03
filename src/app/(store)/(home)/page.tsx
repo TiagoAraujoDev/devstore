@@ -7,12 +7,15 @@ async function getFeaturedProducts() {
   const response = await api("/products/featured");
   const products = await response.json();
   console.log(products);
-  return products;
 }
 
 export default async function Home() {
-  const products = await getFeaturedProducts();
-  console.log(products);
+  const res = await fetch(
+    "https://upgraded-palm-tree-xgqqxw6w5943x7r-3000.app.github.dev/api/products",
+  );
+  const p = await res.json();
+  console.log(p);
+  // await getFeaturedProducts();
   return (
     <div className="grid max-h-[860px] grid-cols-9 grid-rows-6 gap-6">
       <Link
