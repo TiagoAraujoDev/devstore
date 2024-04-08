@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,6 +13,10 @@ const getFeaturedProducts = async (): Promise<Product[]> => {
   });
   const products = await response.json();
   return products;
+};
+
+export const metadata: Metadata = {
+  title: "Home",
 };
 
 export default async function Home() {
