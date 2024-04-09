@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 import { Product } from "~/@types";
+import { AddToCartButton } from "~/components/AddToCartButton";
 import { api } from "~/data/api";
 
 interface ProductDetailsProps {
@@ -30,10 +31,22 @@ export const generateMetadata = async ({
   };
 };
 
+export const generateStaticParams = async () => {
+  const response = await api("/products/featured");
+  const products: Product[] = await response.json();
+
+  return products.map((product) => {
+    return {
+      slug: product.slug,
+    };
+  });
+};
+
 export default async function ProductDetails({ params }: ProductDetailsProps) {
   const { slug } = params;
   const product = await getProductDetails(slug);
   const sizes = ["P", "M", "G", "GG"];
+
   return (
     <div className="relative grid max-h-[690px] grid-cols-3">
       <div className="col-span-2 overflow-hidden">
@@ -77,12 +90,7 @@ export default async function ProductDetails({ params }: ProductDetailsProps) {
             })}
           </div>
         </div>
-        <button
-          type="button"
-          className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white hover:bg-emerald-700"
-        >
-          Adicionar ao carrinho
-        </button>
+        <AddToCartButton productId={product.id} />
       </div>
     </div>
   );
