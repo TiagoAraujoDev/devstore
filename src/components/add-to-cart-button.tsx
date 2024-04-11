@@ -11,7 +11,7 @@ interface AddToCartButtonProps {
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ productId }) => {
   const { addToCart } = useCart();
   const handleAddToCart = useCallback(() => {
-    addToCart(String(productId));
+    addToCart(productId);
   }, []);
   return (
     <button
