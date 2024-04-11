@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CartWidget } from "./cart";
+import { SearchForm } from "./search-form";
 
 const Header: React.FC = () => {
   return (

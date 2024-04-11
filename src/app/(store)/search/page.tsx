@@ -12,14 +12,13 @@ interface SearchProps {
 }
 
 const getSearchedProducts = async (query: string): Promise<Product[]> => {
-  const response = await api(`/search/${query}`);
+  const response = await api(`/products/search=q?${query}`);
   const products = await response.json();
   return products;
 };
 
 export default async function Search({ searchParams }: SearchProps) {
   const { q: query } = searchParams;
-
   if (!query) redirect("/");
   const products = await getSearchedProducts(query);
   console.log(products);
@@ -30,95 +29,41 @@ export default async function Search({ searchParams }: SearchProps) {
       </p>
 
       <div className="grid grid-cols-3 gap-6">
-        <Link
-          href="/product/moletom-never-stop-learning"
-          className="group relative flex items-start justify-center overflow-hidden rounded-lg bg-zinc-900"
-        >
-          <Image
-            src="/moletom-never-stop-learning.png"
-            className="transition-transform group-hover:scale-105"
-            width={480}
-            height={480}
-            quality={100}
-            alt=""
-          />
-          <div className="absolute bottom-10 right-10 flex h-12 max-w-[280px] items-center gap-2 rounded-full border-2 border-zinc-500 bg-black/60  p-1 pl-5">
-            <span
-              title="moletom-never-stop-learning"
-              className="truncate text-sm"
-            >
-              moletom-never-stop-learning
-            </span>
-            <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4">
-              {new Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0,
-              }).format(129)}
-            </span>
-          </div>
-        </Link>
-
-        <Link
-          href="/product/moletom-never-stop-learning"
-          className="group relative flex items-start justify-center overflow-hidden rounded-lg bg-zinc-900"
-        >
-          <Image
-            src="/moletom-never-stop-learning.png"
-            className="transition-transform group-hover:scale-105"
-            width={480}
-            height={480}
-            quality={100}
-            alt=""
-          />
-          <div className="absolute bottom-10 right-10 flex h-12 max-w-[280px] items-center gap-2 rounded-full border-2 border-zinc-500 bg-black/60  p-1 pl-5">
-            <span
-              title="moletom-never-stop-learning"
-              className="truncate text-sm"
-            >
-              moletom-never-stop-learning
-            </span>
-            <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4">
-              {new Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0,
-              }).format(129)}
-            </span>
-          </div>
-        </Link>
-
-        <Link
-          href="/product/moletom-never-stop-learning"
-          className="group relative flex items-start justify-center overflow-hidden rounded-lg bg-zinc-900"
-        >
-          <Image
-            src="/moletom-never-stop-learning.png"
-            className="transition-transform group-hover:scale-105"
-            width={480}
-            height={480}
-            quality={100}
-            alt=""
-          />
-          <div className="absolute bottom-10 right-10 flex h-12 max-w-[280px] items-center gap-2 rounded-full border-2 border-zinc-500 bg-black/60  p-1 pl-5">
-            <span
-              title="moletom-never-stop-learning"
-              className="truncate text-sm"
-            >
-              moletom-never-stop-learning
-            </span>
-            <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4">
-              {new Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0,
-              }).format(129)}
-            </span>
-          </div>
-        </Link>
+        {products.length > 0 ? (
+          products.map((product) => {
+            return (
+              <Link
+                key={product.id}
+                href={`product/${product.slug}`}
+                className="group relative flex items-start justify-center overflow-hidden rounded-lg bg-zinc-900"
+              >
+                <Image
+                  src={product.image}
+                  className="transition-transform group-hover:scale-105"
+                  width={480}
+                  height={480}
+                  quality={100}
+                  alt=""
+                />
+                <div className="absolute bottom-10 right-10 flex h-12 max-w-[280px] items-center gap-2 rounded-full border-2 border-zinc-500 bg-black/60  p-1 pl-5">
+                  <span title={product.title} className="truncate text-sm">
+                    {product.title}
+                  </span>
+                  <span className="flex h-full items-center justify-center rounded-full bg-violet-500 px-4">
+                    {new Intl.NumberFormat("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0,
+                    }).format(product.price)}
+                  </span>
+                </div>
+              </Link>
+            );
+          })
+        ) : (
+          <div>ndad</div>
+        )}
       </div>
     </div>
   );
