@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 import { Product } from "~/@types";
-import { AddToCartButton } from "~/components/AddToCartButton";
+import { AddToCartButton } from "~/components/add-to-cart-button";
 import { api } from "~/data/api";
 
 interface ProductDetailsProps {
