@@ -9,13 +9,13 @@ import {
 } from "react";
 
 interface CartItem {
-  productId: string;
+  productId: number;
   quantity: number;
 }
 
 interface CartContexType {
   items: CartItem[];
-  addToCart: (productId: string) => void;
+  addToCart: (productId: number) => void;
 }
 
 export const CartContex = createContext({} as CartContexType);
@@ -23,7 +23,7 @@ export const CartContex = createContext({} as CartContexType);
 const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = useCallback((productId: string) => {
+  const addToCart = useCallback((productId: number) => {
     setCartItems((state) => {
       const productInCart = state.some((item) => item.productId === productId);
 

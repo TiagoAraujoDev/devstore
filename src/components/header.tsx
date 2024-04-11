@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { CartComponent } from "./cart";
+import { CartWidget } from "./cart";
 
 const Header: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const Header: React.FC = () => {
         </form>
       </div>
       <div className="flex items-center gap-4">
-        <CartComponent />
+        <CartWidget />
         <div className="h-4 w-px bg-zinc-700" />
         <Link
           href="/account"
