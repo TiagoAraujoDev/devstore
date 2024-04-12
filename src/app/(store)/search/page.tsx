@@ -11,8 +11,8 @@ interface SearchProps {
   };
 }
 
-const getSearchedProducts = async (query: string): Promise<Product[]> => {
-  const response = await api(`/products/search=q?${query}`);
+const searchProduct = async (query: string): Promise<Product[]> => {
+  const response = await api(`/products/search?q=${query}`);
   const products = await response.json();
   return products;
 };
@@ -20,12 +20,12 @@ const getSearchedProducts = async (query: string): Promise<Product[]> => {
 export default async function Search({ searchParams }: SearchProps) {
   const { q: query } = searchParams;
   if (!query) redirect("/");
-  const products = await getSearchedProducts(query);
-  console.log(products);
+  const products = await searchProduct(query);
+
   return (
     <div className="flex flex-col gap-4">
       <p className="text-sm">
-        Resultados para: <span className="font-semibold">moletom</span>
+        Resultados para: <span className="font-semibold">{query}</span>
       </p>
 
       <div className="grid grid-cols-3 gap-6">
@@ -62,7 +62,9 @@ export default async function Search({ searchParams }: SearchProps) {
             );
           })
         ) : (
-          <div>ndad</div>
+          <div className="col-span-3 h-full">
+            <h1 className="text-center text-3xl font-bold">No product found</h1>
+          </div>
         )}
       </div>
     </div>
